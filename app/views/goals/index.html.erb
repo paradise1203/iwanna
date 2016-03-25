@@ -1,0 +1,5 @@
+<% @goals.each do |g| %>
+    <%= link_to g.name, goal_path(g) %>
+    <p>Content: <%= g.content %></p>
+    <p>Author: <%= g.user.email %></p>
+<% end %>

@@ -1,0 +1,7 @@
+<h3>Name: <%= @goal.name %></h3>
+<p>Content: <%= @goal.content %></p>
+<p>Author: <%= @goal.user.email %></p>
+
+<%= link_to 'Delete', goal_path(@goal),
+            method: :delete, data: { confirm: 'Are you sure?' } %> <br>
+<%= link_to 'Back', goals_path %>
