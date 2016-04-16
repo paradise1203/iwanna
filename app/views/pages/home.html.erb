@@ -1,3 +1,7 @@
+<p> Your goals! </p>
+
+<%= link_to 'New goal!', new_goal_path %>
+
 <% @goals.each do |g| %>
     <div class="post-preview">
       <%= link_to goal_path(g) do %>

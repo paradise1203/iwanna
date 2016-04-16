@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'pages#welcome'
 
+  get '/home', to: 'pages#home'
+
   resources :goals
 
   # Example of regular route:
