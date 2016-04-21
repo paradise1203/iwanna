@@ -1,14 +1,33 @@
 
-<%= form_for :goal, url:goals_path do |f|%>
-  <p>
-    <%= f.label :name %> <br>
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :content %> <br>
-    <%= f.text_area :content %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
+<%= form_for @goal, url:goals_path do |f|%>
+    <% if @goal.errors.any? %>
+        <div id="errors">
+          <h2><%= pluralize(@goal.errors.count, "error") %> prevented this goal from saving:</h2>
+          <ul>
+            <% @goal.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="row control-group">
+      <div class="form-group col-xs-12 floating-label-form-group controls">
+        <%= f.label :name %> <br>
+        <%= f.text_field :name, type: "text", class: "form-control", placeholder: "Name", id: "name" %>
+      </div>
+    </div>
+
+    <div class="row control-group">
+      <div class="form-group col-xs-12 floating-label-form-group controls">
+        <%= f.label :content %> <br>
+        <%= f.text_area :content, rows: "10", class: "form-control", placeholder: "Message", id: "message" %>
+        </div>
+    </div><br>
+
+    <div class="row">
+      <div class="actions form-group col-xs-12">
+        <%= f.submit "Create", class: 'btn btn-default' %>
+      </div>
+    </div>
 <% end %>

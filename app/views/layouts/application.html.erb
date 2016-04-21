@@ -21,7 +21,7 @@
   <![endif]-->
 
   <%= stylesheet_link_tag    'application.css', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -42,6 +42,9 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
+          <li>
+            <%= link_to 'Main', goals_path %>
+          </li>
           <% if user_signed_in? %>
             <li>
               <%= link_to 'Home', home_path %>
@@ -69,9 +72,23 @@
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
           <div class="site-heading">
-            <h1>Welcome!</h1>
+            <% if current_page?(home_path) %>
+                <h1>Your goals!</h1>
+            <% elsif user_signed_in? %>
+                <h1>Welcome home!</h1>
+            <% else %>
+                <h1>Welcome!</h1>
+            <% end %>
             <hr class="small">
-            <span class="subheading">Set goals and achieve them with us!</span>
+            <% if current_page?(home_path) %>
+                <span class="subheading">
+                  <%= link_to 'Have a new goal!', new_goal_path, {style: "color: white"} %>
+                </span>
+            <% elsif user_signed_in? %>
+                <span class="subheading">Check out what`s new here!</span>
+            <% else %>
+                <span class="subheading">Set goals and achieve them with us!</span>
+            <% end %>
           </div>
         </div>
       </div>

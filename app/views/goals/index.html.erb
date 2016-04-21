@@ -4,9 +4,6 @@
           <h2 class="post-title">
             <%= g.name %>
           </h2>
-          <h3 class="post-subtitle">
-            <%= g.content %>
-          </h3>
       <% end %>
       <p class="post-meta">
         Posted by <%= g.user.email %> on <%= time_ago_in_words(g.created_at) %>

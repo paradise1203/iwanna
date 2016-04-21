@@ -7,16 +7,22 @@ class GoalsController < ApplicationController
   end
 
   def show
+    @user = current_user
     @goal = Goal.find(params[:id])
   end
 
   def new
+    @goal = Goal.new
   end
 
   def create
     @user = current_user
     @goal = @user.goals.create(goal_params)
-    redirect_to @goal
+    if @goal.save
+      redirect_to @goal
+    else
+      render 'new'
+    end
   end
 
   def destroy

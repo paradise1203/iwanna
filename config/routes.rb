@@ -8,7 +8,9 @@ Rails.application.routes.draw do
 
   get '/home', to: 'pages#home'
 
-  resources :goals
+  resources :goals do
+    resources :records
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
